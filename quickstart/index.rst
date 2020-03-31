@@ -10,11 +10,11 @@ Quick Start Guide
 Zeek works on most modern, Unix-based systems and requires no custom
 hardware.  It can be downloaded in either pre-built binary package or
 source code forms.  See :ref:`installing-zeek` for instructions on how to
-install Zeek. 
+install Zeek.
 
 In the examples below, ``$PREFIX`` is used to reference the Zeek
 installation root directory, which by default is ``/usr/local/zeek`` if
-you install from source. 
+you install from source.
 
 Managing Zeek with ZeekControl
 ==============================
@@ -189,7 +189,7 @@ from a standard Zeek script with your own value, using Zeek's ``redef``
 operator.
 
 The typical way a standard Zeek script advertises tweak-able options to users
-is by defining variables with the ``&redef`` attribute and ``const`` qualifier. 
+is by defining variables with the ``&redef`` attribute and ``const`` qualifier.
 A redefineable constant might seem strange, but what that really means is that
 the variable's value may not change at run-time, but whose initial value can be
 modified via the ``redef`` operator at parse-time.
@@ -337,6 +337,17 @@ Zeek will output log files into the working directory.
    capturing as an unprivileged user and checksum offloading are
    particularly relevant at this point.
 
+Monitoring Live Traffic from Testimony Unix socket
+--------------------------------------------------
+
+Zeek supports packet capture from Testimony Unix socket:
+
+.. sourcecode:: console
+
+    zeek -i testimony::/path/to/testimony.sock <list of scripts to load>
+
+where ``/path/to/testimony.sock`` points to running Testimony socket.
+
 
 Reading Packet Capture (pcap) Files
 -----------------------------------
@@ -380,9 +391,9 @@ A command-line invocation of Zeek typically looks like:
 Where the last arguments are the specific policy scripts that this Zeek
 instance will load.  These arguments don't have to include the ``.zeek``
 file extension, and if the corresponding script resides in the default
-search path, then it requires no path qualification.  The following 
+search path, then it requires no path qualification.  The following
 directories are included in the default search path for Zeek scripts::
-   
+
    ./
    <prefix>/share/zeek/
    <prefix>/share/zeek/policy/
@@ -394,7 +405,7 @@ These prefix paths can be used to load scripts like this:
 
    zeek -r mypackets.trace frameworks/files/extract-all
 
-This will load the 
+This will load the
 ``<prefix>/share/zeek/policy/frameworks/files/extract-all.zeek`` script which will
 cause Zeek to extract all of the files it discovers in the PCAP.
 
@@ -414,8 +425,8 @@ script that defines the scripts that are part of the package.
 Local site customization
 ------------------------
 
-There is one script that is installed which is considered "local site 
-customization" and is not overwritten when upgrades take place. To use 
+There is one script that is installed which is considered "local site
+customization" and is not overwritten when upgrades take place. To use
 the site-specific ``local.zeek`` script, just add it to the command-line (can
 also be loaded through scripts with @load):
 
